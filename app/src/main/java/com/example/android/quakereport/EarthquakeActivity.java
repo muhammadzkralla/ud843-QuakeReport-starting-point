@@ -112,9 +112,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
-        TextView mEmptyStateTextView = (TextView)findViewById(R.id.empty_view);
-        mEmptyStateTextView.setText("No Earthquakes");
+
 
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
@@ -122,7 +120,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (earthquakes != null && !earthquakes.isEmpty()) {
-             mAdapter.addAll(earthquakes);
+            mAdapter.addAll(earthquakes);
+        }else{
+            // Set empty state text to display "No earthquakes found."
+            TextView mEmptyStateTextView = (TextView)findViewById(R.id.empty_view);
+            mEmptyStateTextView.setText("No Earthquakes");
         }
 
     }
