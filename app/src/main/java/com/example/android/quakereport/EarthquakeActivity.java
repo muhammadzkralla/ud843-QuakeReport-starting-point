@@ -37,6 +37,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
      * Adapter for the list of earthquakes
      */
     private EarthquakeAdapter mAdapter;
+    TextView mEmptyStateTextView;
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
     /**
@@ -55,6 +56,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
+        mEmptyStateTextView = (TextView)findViewById(R.id.empty_view);
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
@@ -121,9 +123,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // data set. This will trigger the ListView to update.
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
+            mEmptyStateTextView.setVisibility(View.GONE);
         }else{
             // Set empty state text to display "No earthquakes found."
-            TextView mEmptyStateTextView = (TextView)findViewById(R.id.empty_view);
+
             mEmptyStateTextView.setText("No Earthquakes");
         }
 
